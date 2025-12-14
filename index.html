@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Momna's Kitchen</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f2f2f2;
+}
+
+nav {
+    background: #d35400;
+    padding: 15px;
+    color: white;
+}
+
+nav button {
+    background: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+section {
+    display: none;
+    padding: 20px;
+}
+
+.show {
+    display: block;
+}
+
+.card {
+    background: white;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+}
+
+button.buy {
+    background: green;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <b>🍽 Momna's Kitchen</b><br><br>
+    <button onclick="openPage('home')">Home</button>
+    <button onclick="openPage('menu')">Menu</button>
+    <button onclick="openPage('cart')">Cart</button>
+</nav>
+
+<section id="home" class="show">
+    <h2>Welcome to Momna's Kitchen ❤️</h2>
+    <p>Fresh homemade food</p>
+</section>
+
+<section id="menu">
+    <h2>Menu</h2>
+
+    <div class="card">
+        <img src="images/milk-tea-recipe.jpg">
+        <h3>Tea</h3>
+        <p>Rs. 50</p>
+        <button onclick="addToCart('Tea',50)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="images/hq720.jpg">
+        <h3>Coffee</h3>
+        <p>Rs. 150</p>
+        <button onclick="addToCart('Coffee',150)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="images/zinger-burgerpsd-450x450.jpg">
+        <h3>Zinger Burger</h3>
+        <p>Rs. 350</p>
+        <button onclick="addToCart('Zinger Burger',350)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="images/Chicken-Pulao-on-a-platter.jpg">
+        <h3>Rice</h3>
+        <p>Rs. 200</p>
+        <button onclick="addToCart('Rice',200)">Add to Cart</button>
+    </div>
+</section>
+
+<section id="cart">
+    <h2>Your Cart</h2>
+    <div id="cartData"></div>
+    <h3>Total: Rs <span id="total">0</span></h3>
+    <button class="buy" onclick="buyNow()">Buy Now</button>
+</section>
+
+<script>
+let total = 0;
+
+function openPage(id) {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("cart").style.display = "none";
+    document.getElementById(id).style.display = "block";
+}
+
+function addToCart(name, price) {
+    let cart = document.getElementById("cartData");
+    cart.innerHTML += "<p>" + name + " - Rs " + price + "</p>";
+    total += price;
+    document.getElementById("total").innerText = total;
+    alert(name + " added to cart");
+}
+
+function buyNow() {
+    if (total == 0) {
+        alert("Cart is empty!");
+        return;
+    }
+    alert("Order placed successfully ❤️");
+    document.getElementById("cartData").innerHTML = "";
+    total = 0;
+    document.getElementById("total").innerText = 0;
+    openPage("home");
+}
+</script>
+
+</body>
+</html>
+``
